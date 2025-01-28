@@ -1,0 +1,167 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+
+<!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Icona -->
+  <link rel="icon" href="/images/iconaLogin.PNG" type="image/png">
+  <link rel="apple-touch-icon" href="  /images/iconaLogin.PNG">
+
+<!-- Bootstrap CSS -->
+<link th:rel="stylesheet"
+	th:href="@{/webjars/bootstrap/5.3.3/css/bootstrap.min.css}" />
+	
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+<link rel="Stylesheet" href="/css/style.css">
+
+<title>SpringBlog</title>
+</head>
+<body class="background-custom">
+	<nav class="navbar bg-body-tertiary">
+			<div class="px-1 w-100">
+				<div class="row d-flex justify-content-between align-items-center">
+					<div class="col-6 d-flex align-items-center">
+							<a class="navbar-brand d-flex" th:href="@{/SpringBlog/home}">
+							      <img 	src="/images/iconaLogin.PNG" alt="Logo" width="30" height="30" class="d-inline-block align-text-top">
+								  <span class="d-none d-sm-block fs-5 align-bottom">SpringBlog</span>	      
+							</a>					
+							<form role="search">
+								<input type="text" class="form-control login-input" placeholder="Ricerca...">
+							</form>		
+					</div>
+					<div class="col-6  d-flex justify-content-end align-items-center">
+							<a class="nav-link p-0 d-flex align-items-center" th:href="@{'/utente/profilo/{id}'(id=${utente.id})}">
+								<span class="d-none d-sm-block pe-2" th:text="${utente.getNome()}"></span>
+								<img class="rounded-circle mx-1" th:src="${imgProfilo}" alt="immagine profilo" 
+									 	style="width: 35px;height: 35px; border: 2px solid grey;">
+								</a>		
+								<a class="nav-link" th:href="@{/SpringBlog/home}">
+									<span class="fs-4 mx-1"><i class="bi bi-house-fill" style="width: 20px;"></i></span>
+								</a>
+								<a class="nav-link " th:href="@{/SpringBlog/home/newPost}">
+									<span class="fs-4 ms-2 me-3"><i class="bi bi-pencil-square" style="width: 20px;"></i></span>
+								</a>										
+								<button class="button-custom-logout">
+								     <a class="nav-link" th:href="@{/logout}">LogOut</a>			
+								</button>																		
+					</div>				
+				</div>
+			</div>
+		</nav>
+	<section class="p-3">
+		<div id="scrollmenu-container" class="container d-flex justify-content-center">
+		          <div class="row d-flex scrollmenu align-items-cent text-center" >
+					<div class="col-auto p-1">
+						<form>
+							<button type="submit" th:text="Tutti"
+								class="button-custom-categories text-center"></button>							
+						</form>						
+					</div>
+		            <div th:each="categoria: ${categorieList}" class="col-auto p-1">
+						<form>
+			              <button type="submit" th:text="${categoria.getNome()}"
+						  		class="button-custom-categories text-center"></button>							
+						</form>
+		            </div>
+		          </div>
+		        </div>
+	</section>
+	<section class="p-3">
+		<div class="d-flex justify-content-center  align-items-center flex-column">
+			<div class="card mb-3" style="width: 95%">
+				<div class="card-header">
+					<a class="nav-link p-0 d-flex align-items-center" th:href="@{'/utente/profilo/{id}'(id=${post.autore.getId()})}">
+						<img class="rounded-circle mx-1" th:src="${post.autore.getImgProfilo()}" alt="immagine profilo" 
+							style="width: 35px;height: 35px; border: 2px solid grey;">
+						<strong><span class="ps-2" th:text="|${post.autore.getNome()} ${post.autore.getCognome()}|"></span></strong>
+					</a>
+				</div>
+			  <ul class="list-group list-group-flush">
+				<li class="list-group-item py-2 px-4"> 
+					<div><strong th:text="${post.getTitolo()}"></strong></div>
+					<div th:text="${post.getContenuto()}"></div>
+				</li>
+			    <li th:if="${post.getUrlImmagine()}" class="list-group-item p-2 text-center">
+					<img th:src="${post.getUrlImmagine()}" style="width: 100%;" alt="immagine post">
+				</li>
+				<li class="list-group-item">
+					<form id="commenti-form"
+						th:object="${commento}" 
+						th:action="@{|/Posts/newCommento/post${post.id}|}"
+						method="post">
+						<div class="d-flex justify-content-center">
+							<div class="col-12 p-1">
+								<div class="input-group mb-3">
+								  <input type="text" class="form-control" placeholder="Commenta il post..." 
+								  th:field="*{testo}" th:errorClass="is-invalid">
+								  	<div th:if="${#fields.hasErrors('testo')}" class="invalid-feedback">
+								  		<ul>
+								  			<li th:each="err : ${#fields.errors('testo')}" 
+								  				th:text="${err}">
+								  			</li>
+								  		</ul>
+								  	</div>
+								  <span class="input-group-text" id="basic-addon1">
+									<button type="submit" class="button-input-commenti"><i class="bi bi-send-fill"></i></button>
+								  </span>
+								  <!--
+								  <input type="hidden" th:field="*{articolo}" th:value="${post}" name="post">
+								  -->
+								</div>
+							</div>
+						</div>
+					</form>
+				</li>
+			    <li class="list-group-item">
+					<p class="d-flex justify-content-end">
+						<button type="submit" class="button-likes">
+							<i class="bi bi-hand-thumbs-up"></i>
+						</button>
+						<span class="p-1 me-2" style="font-size: 10px;">2</span>
+						<a  data-bs-toggle="collapse" href="#multiCollapseExample1" 
+					  		role="button" aria-expanded="false" aria-controls="multiCollapseExample1" style="color: grey;">
+							<i class="bi bi-chat-left-text"></i>
+						</a>
+						<span class="p-1" style="font-size: 10px;"
+							th:text="|${commentiList.size()} commenti|"></span>
+					</p>
+					<div class="row">
+					  <div class="col">
+					    <div class="collapse multi-collapse " id="multiCollapseExample1">
+					      <div th:if="${!commentiList.isEmpty()}" class="scroll-comments">
+							<div th:each="commento: {commentiList}" class="card p-1">
+								<div class="d-flex align-items-center">
+									<img class="rounded-circle mx-1" th:src="${commento.autore.imgProfilo}" alt="immagine profilo autore"
+										style="width: 35px;height: 35px; border: 2px solid grey;"> 
+									<strong><span class="ps-2" th:text="|${commento.autore.getNome()} ${commento.autore.getCognome()}|"></span></strong>
+								</div>
+									<span th:text="${commento.getTesto()" class="ps-5"></span>							
+							  	<div class="text-end" style="font-size: 8px;"
+										th:text="|Pubblicato il: ${commento.getGdo().getDayOfMonth()}-${commento.getGdo().getMonthValue()}-${commento.getGdo().getYear()}
+										alle ${commento.getGdo().getHour()}:${commento.getGdo().getMinute()}|">>
+											
+							  	</div>	  
+								
+							</div>
+					    </div>
+						<div th:if="${commentiList.isEmpty()}">
+							Nessun commento presente
+						</div>
+					  </div>
+					</div>
+				</li>
+			    <li class="list-group-item text-end" style="font-size: small;"
+						th:text="|Pubblicato il: ${post.getGdo().getDayOfMonth()}-${post.getGdo().getMonthValue()}-${post.getGdo().getYear()}
+							alle ${post.getGdo().getHour()}:${post.getGdo().getMinute()}|">
+				</li>
+			  </ul>
+			</div>
+		</div>
+	</section>
+	
+	<script th:src="@{/webjars/bootstrap/5.3.3/js/bootstrap.bundle.min.js}"></script>
+	
+</body>
+</html>

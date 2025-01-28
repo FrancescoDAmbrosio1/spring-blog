@@ -1,0 +1,125 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+
+<!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Icona -->
+  <link rel="icon" href="/images/iconaLogin.PNG" type="image/png">
+  <link rel="apple-touch-icon" href="  /images/iconaLogin.PNG">
+
+<!-- Bootstrap CSS -->
+<link th:rel="stylesheet"
+	th:href="@{/webjars/bootstrap/5.3.3/css/bootstrap.min.css}" />
+	
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+<link rel="Stylesheet" href="/css/style.css">
+
+<title>SpringBlog - NewPost </title>
+</head>
+<body class="background-custom">
+	<nav class="navbar bg-body-tertiary">
+			<div class="px-1 w-100">
+				<div class="row d-flex justify-content-between align-items-center">
+					<div class="col-6 d-flex align-items-center">
+							<a class="navbar-brand d-flex" th:href="@{/SpringBlog/home}">
+							      <img 	src="/images/iconaLogin.PNG" alt="Logo" width="30" height="30" class="d-inline-block align-text-top">
+								  <span class="d-none d-sm-block fs-5 align-bottom">SpringBlog</span>	      
+							</a>					
+							
+					</div>
+					<div class="col-6  d-flex justify-content-end align-items-center">
+							<a class="nav-link p-0 d-flex align-items-center" th:href="@{'/utente/profilo/{id}'(id=${utente.id})}">
+								<span class="d-none d-sm-block pe-2" th:text="${utente.getNome()}"></span>
+								<img class="rounded-circle mx-1" th:src="${imgProfilo}" alt="immagine profilo" 
+									 	style="width: 35px;height: 35px; border: 2px solid grey;">
+								</a>		
+								<a class="nav-link" th:href="@{/SpringBlog/home}">
+									<span class="fs-4 mx-1"><i class="bi bi-house-fill" style="width: 20px;"></i></span>
+								</a>
+								<a class="nav-link " th:href="@{/SpringBlog/home/newPost}">
+									<span class="fs-4 ms-2 me-3"><i class="bi bi-pencil-square" style="width: 20px;"></i></span>
+								</a>										
+								<button class="button-custom-logout">
+								     <a class="nav-link" th:href="@{/logout}">LogOut</a>			
+								</button>																		
+					</div>				
+				</div>
+			</div>
+		</nav>
+	<div class="d-flex justify-content-center align-items-center ">
+		<div class="new-user-container my-5">
+			<div class="text-end mb-3">
+				<button class="button-custom">
+					<a 	th:href="@{/SpringBlog/home}" style="color: black;"><i class="bi bi-x-square"></i></a>
+				</button>	
+			</div>
+			<h3 class="mb-3 text-center">Inserimento nuovo Post</h3>
+			<div>
+				<form id="user-form"
+						th:object="${articolo}" 
+						th:action="@{/SpringBlog/home/newPost}"
+						method="post"
+						enctype="multipart/form-data">
+						<div class="row d-flex justify-content-evenly">
+							<div class="col-12 mb-3">
+								<label for="articoloInputTitolo" class="form-label ps-3">Titolo </label>
+								<input type="text" class="form-control login-input" 
+									id="articoloInputTitolo" 
+									th:field="*{titolo}" th:errorClass="is-invalid">
+								<div th:if="${#fields.hasErrors('titolo')}" class="invalid-feedback">
+									<ul>
+										<li th:each="err : ${#fields.errors('titolo')}" 
+											th:text="${err}">
+										</li>
+									</ul>
+								</div>
+							</div>
+							<div class="col-12 mb-3">
+								<label for="articoloInputContenuto" class="form-label ps-3">Testo</label>
+								<textarea class="form-control login-input" cols="auto"
+									id="articoloInputContenuto" 
+									th:field="*{contenuto}" th:errorClass="is-invalid">
+								</textarea>
+									<div th:if="${#fields.hasErrors('contenuto')}" class="invalid-feedback">
+										<ul>
+											<li th:each="err : ${#fields.errors('contenuto')}" 
+												th:text="${err}">
+											</li>
+										</ul>
+									</div>
+							</div>
+							<div class="col-12 mb-3">
+								<div class="dropdown">
+								<input type="text" class="form-control login-input" data-bs-toggle="dropdown" aria-expanded="false"
+									id="InputCategoria" placeholder="Seleziona categoria appartenenza...">
+									<ul class="dropdown-menu" style="max-height: 200px; overflow-y: scroll; padding: 5px;">
+										<li	class="list-group-item" th:each="categoria : ${categorieList}" >
+											<input type="radio" name="categoria" th:value="${categoria.id}" th:field="*{categoria}">
+											<label th:text="${categoria.nome}"></label>
+										</li>
+									</ul>
+								</input>
+							</div>
+							</div>
+							<div class="col-12 mb-3">
+									<label for="articoloInputUrl" class="form-label ps-3">Immagine</label>
+									<input id="articoloInputUrl" type="file" class="form-control login-input" name="file">											
+							</div>
+						</div>
+						<div class="d-flex justify-content-end gap-3 p-4">
+							<button type="submit" class="button-custom mb-3">Salva</button>
+						</div>
+				</form>
+				
+			</div>
+		</div>
+		
+	</div>
+
+	<script th:src="@{/webjars/bootstrap/5.3.3/js/bootstrap.bundle.min.js}"></script>
+
+</body>
+</html>
