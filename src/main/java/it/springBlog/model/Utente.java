@@ -3,6 +3,11 @@ package it.springBlog.model;
 import java.util.List;
 import java.util.Set;
 
+import javax.persistence.Transient;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+import it.springBlog.service.DatabaseUserDetailsService;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -17,6 +22,8 @@ import jakarta.validation.constraints.NotBlank;
 @Entity
 @Table(name = "utenti")
 public class Utente {
+	
+	
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -43,6 +50,12 @@ public class Utente {
 	
 	@Column(name = "img_profilo")
 	private String imgProfilo;
+	
+//	transient indica che il campoLogo path non è persistente sul db 
+//	ma viene creato temporanemente attraverso l'MVCConfiguration a seconda
+//	dell'ambiente in cui runna l'applicazione 
+	@Transient 
+	private String imgProfiloPath;
 	
 	@ManyToMany(fetch = FetchType.EAGER)
 	private Set<Ruolo> ruoli;
@@ -136,6 +149,13 @@ public class Utente {
 		this.likes = likes;
 	}
 	
+// 		questo get è riferito al LogoPath @Transient e restituisce il path realtivo derivato
+//		da quello assoluto creato tramite l'MVCConfigutation e lo restituisce se è stata caricata
+//		un'immagine 
+		public String getLogoPath() {
+			return "/upload/images/utentiId/"  + id + "/imgProfilo/" + this.imgProfilo;
+		}
+
 	
 
 //	public String getUsername() {

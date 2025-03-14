@@ -28,6 +28,7 @@ import it.springBlog.model.Utente;
 import it.springBlog.repository.RuoloRepository;
 import it.springBlog.repository.UtenteRepository;
 import it.springBlog.service.DatabaseUserDetailsService;
+import it.springBlog.service.UploadFileService;
 import jakarta.validation.Valid;
 
 @Controller
@@ -42,6 +43,9 @@ public class UtenteController {
 	
 	@Autowired
 	private DatabaseUserDetailsService databaseUserDetailsService;
+	
+	@Autowired
+	private UploadFileService uploadFileService;
 	
 	@GetMapping("/create")
 	private String registraUtente(Model model) {
@@ -73,10 +77,25 @@ public class UtenteController {
 		Set<Ruolo> ruoloUtente = ruoloRepository.findById(1);
 		
 		utente.setRuoli(ruoloUtente);
+
+		databaseUserDetailsService.saveCriptedPassword(utente);
 		
-		utente.setImgProfilo("/images/avatar.jpg");
+		if(!file.isEmpty()) {
+			
+			String profilePhotoName = uploadFileService.saveProfileImage(file, utente);
+			
+			utente.setImgProfilo(profilePhotoName);
+			
+			utenteRepository.save(utente);
+			
+		} else {
+			
+			utente.setImgProfilo("/images/avatar.jpg");
+			
+			utenteRepository.save(utente);
+		}
 		
-		databaseUserDetailsService.saveCriptedPassword(file, utente);
+		
 		
 		return "redirect:/SpringBlog/preview";
 	}
