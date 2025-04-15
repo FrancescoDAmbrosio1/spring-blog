@@ -74,42 +74,19 @@ div.scrollmenu button {
 	background-color: rgba(255,117,233,1);
 }
 
-/* Login */
-
-.login-container{
-	width: 370px;
-	height: 500px;
-	border: 1 px grey solid;
-	border-radius: 12px;
-	box-shadow: 3px 3px lightgray;
-	background-color: white;
-}
-
-.login-container a {
-	color: dimgrey;
-}
-
-.login-input{
-	background-color: rgba(69,217,252,0.1);
-	color: lightgrey;
-}
 
 /* New user */
 
-.new-user-container{
-	width: 80vw;
-	height: auto;
-	border: 1 px grey solid;
-	border-radius: 12px;
-	box-shadow: 3px 3px lightgray;
-	background-color: white;
-	padding: 20px;
+::file-selector-button{
+	background-color: #59DDFD;
+	color: white;
+	border: 1px solid lightgray;
+	border-radius: 8px 0 0 8px;
+	line-height: 18px;
+	padding: 4px;
+	margin-right: 12px;
 }
 
-/* Logo */
-.logo{
-	width: 55px;
-}
 
 /* Profilo */
 
@@ -136,19 +113,15 @@ div.scrollmenu button {
 }
 
 /* Buttons*/
-.button-custom{
-	background-color: rgba(255,117,233,1);
-	border: 1px lightgray solid;
-	border-radius: 8px;
-	padding: 6px 12px;
-}
 
 .button-custom-a{
 	background-color: rgba(255,117,233,1);
 	border: 1px lightgray solid;
 	border-radius: 8px;
 	padding: 10px 16px;
-	color:black;
+	color: black;
+	-webkit-box-shadow: 5px 5px 15px 2px rgba(148,148,148,0.8); 
+	box-shadow: 5px 5px 15px 2px rgba(148,148,148,0.8);
 }
 
 .button-custom-a-profile-img{
@@ -180,4 +153,21 @@ div.scrollmenu button {
 
 .button-custom-logout:hover{
 	background-color: rgba(255,117,233,0.4);
+}
+
+
+
+/* ----------------------- MEDIA QUERIES --------------- */
+
+@media screen and (min-width: 768px){
+	.profile-container{
+		width: 75%;
+		height: auto;
+		border: 1 px grey solid;
+		border-radius: 12px;
+		box-shadow: 3px 3px lightgray;
+		background-color: white;
+		padding: 20px;
+		margin: auto;
+	}
 }

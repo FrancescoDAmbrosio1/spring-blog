@@ -111,7 +111,13 @@ public class UtenteController {
         
         utenteLogged = utente.get();
         
-        model.addAttribute("imgProfilo", utenteLogged.getImgProfilo());
+        String imgProfilo = "/images/DefaultClientImage/avatar.jpg";
+        
+        if(utenteLogged.getImgProfilo() != null) {
+        	imgProfilo = utenteLogged.getLogoPath();
+        }
+        
+        model.addAttribute("imgProfilo", imgProfilo);
 		
 		model.addAttribute("utente", utenteLogged);
 		

@@ -34,7 +34,7 @@ public class SecurityConfiguration {
             .formLogin(login -> 
                 login.loginPage("/login") // Pagina di login personalizzata
 //                    .loginProcessingUrl("/authentication") // URL di elaborazione del login
-                    .defaultSuccessUrl("/SpringBlog/home") // Reindirizza dopo il successo del login
+                    .defaultSuccessUrl("/SpringBlog/home", true) // Reindirizza dopo il successo del login            
                     .permitAll())
             .logout(logout -> 
                 logout
