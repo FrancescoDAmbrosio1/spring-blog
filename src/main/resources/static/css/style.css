@@ -4,10 +4,12 @@
 	box-sizing: border-box;
 }
 
-.disable{
-	pointer-events: none;
-}
+/* Main section - NON CANCELLARE PER NUOVO LAYOUT TAILWIND
+al massimo trovare soluzione per metterlo in html */
 
+#main-section{
+	height: calc(100vh - 84px);
+}
 
 /* Backgrounds */
 

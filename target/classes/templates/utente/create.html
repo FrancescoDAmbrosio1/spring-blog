@@ -1,37 +1,43 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
+
 <head>
 
-<!-- Required meta tags -->
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- Required meta tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 
-<!-- Icona -->
-  <link rel="icon" href="/images/iconaLogin.PNG" type="image/png">
-  <link rel="apple-touch-icon" href="  /images/iconaLogin.PNG">
+	<!-- Icona -->
+	<link rel="icon" href="/images/iconaLogin.PNG" type="image/png">
+	<link rel="apple-touch-icon" href="  /images/iconaLogin.PNG">
 
-  <!-- CDN tailwindCSS-->
-  <script src="https://cdn.tailwindcss.com"></script>
-  	<script>
-  		tailwind.config = {
-  			theme: {
-  				extend: {
-  					animation:{
-  						'scale-once': 'scale-once 1s '
-  					},
-  					colors: {
-  						clifford: '#da373d',
-  					},
-  				}
-  			}
-  		}
-  	</script>
-<link rel="Stylesheet" href="/css/style.css">
+	<!-- CDN tailwindCSS-->
+	<script src="https://cdn.tailwindcss.com"></script>
+	<script>
+		tailwind.config = {
+			theme: {
+				extend: {
+					animation: {
+						'scale-once': 'scale-once 1s '
+					},
+					colors: {
+						clifford: '#da373d',
+					},
+					screens: {
+						xs: '375px'
+					}
+				}
+			}
+		}
+	</script>
+	<link rel="Stylesheet" href="/css/style.css">
 
-<title>SpringBlog - Registrazione </title>
+	<title>SpringBlog - Registrazione </title>
 </head>
-<body class="background-custom">
-	<nav id="navbar" class="flex justify-between items-center px-4 py-2 w-screen h-fit bg-white  text-sm">
+
+<body class="background-custom h-dvh w-dvw">
+	<nav id="navbar"
+		class="flex justify-between items-center px-4 py-2 w-full max-md:h-[64px] h-[84px] bg-white  text-sm border-b border-gray-300">
 		<div id="icona" class="col-auto flex items-center">
 			<a class="me-5" th:href="@{/SpringBlog/preview}">
 				<img src="/images/iconaLogin.PNG" alt="Logo" class="inline w-10 h-10">
@@ -39,130 +45,217 @@
 			</a>
 		</div>
 		<div class="" id="">
-			<ul class="flex gap-4">
-				<li class="">
-					<a class="flex flex-col justify-center items-center p-2 hover:scale-[1.1] transition-discrete" th:href="@{/login}">
-						<img src="/images/icons/enter.svg" class="w-8 h-8">
-						<div class="font-bold text-[10px] text-[#666666]">LOGIN</div>
+			<ul class="flex gap-4 max-md:hidden">
+				<li class="min-w-18 h-auto text-[#666666] hover:text-[#59DDFD] px-2">
+					<a class="w-full flex flex-col justify-center items-center p-2  transition-discrete" th:href="@{/login}">
+						<svg class="w-8 h-8 fill-current " viewBox="0 0 200 200" version="1.1"
+							xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+							xml:space="preserve" xmlns:serif="http://www.serif.com/"
+							style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
+							<rect id="Tavola-da-disegno1" serif:id="Tavola da disegno1" x="0" y="0" width="200"
+								height="200" style="fill:none;" />
+							<clipPath id="_clip1">
+								<rect id="Tavola-da-disegno11" serif:id="Tavola da disegno1" x="0" y="0" width="200"
+									height="200" />
+							</clipPath>
+							<g clip-path="url(#_clip1)">
+								<g id="login" transform="matrix(11.1111,0,0,11.1111,-11.1111,-11.1111)">
+									<path
+										d="M14,10L8,5L8,8L1,8L1,12L8,12L8,15L14,10ZM17,17L9,17L9,19L17,19C18.1,19 19,18.1 19,17L19,3C19,1.9 18.1,1 17,1L9,1L9,3L17,3L17,17Z" />
+								</g>
+							</g>
+						</svg>
+						<div class="font-bold text-[10px]">LOGIN</div>
 					</a>
 				</li>
-				<li class="">
-					<a class="flex flex-col justify-center items-center p-2 pointer-events-none opacity-50"
+				<li class="min-w-18 h-auto text-[#666666] hover:text-[#59DDFD]">
+					<a class="w-full flex flex-col justify-center items-center p-2  transition-discrete" th:href="@{/SpringBlog/preview}">
+						<svg class="w-8 h-8 fill-current" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+							viewBox="0,0,256,256" width="50px" height="50px" fill-rule="nonzero">
+							<g fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter"
+								stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none"
+								font-size="none" text-anchor="none" style="mix-blend-mode: normal">
+								<g transform="scale(5.12,5.12)">
+									<path
+										d="M25,1.05078c-0.2175,0 -0.43414,0.06898 -0.61914,0.20898l-23,17.95117c-0.43,0.34 -0.50992,0.9682 -0.16992,1.4082c0.34,0.43 0.9682,0.50992 1.4082,0.16992l1.38086,-1.07812v26.28906c0,0.55 0.45,1 1,1h14v-18h12v18h14c0.55,0 1,-0.45 1,-1v-26.28906l1.38086,1.07812c0.19,0.14 0.39914,0.21094 0.61914,0.21094c0.3,0 0.58906,-0.13086 0.78906,-0.38086c0.34,-0.44 0.26008,-1.0682 -0.16992,-1.4082l-23,-17.95117c-0.185,-0.14 -0.40164,-0.20898 -0.61914,-0.20898zM35,5v1.05078l6,4.67969v-5.73047z">
+									</path>
+								</g>
+							</g>
+						</svg>
+						<div class="font-bold text-[10px]">PREVIEW</div>
+					</a>
+				</li>
+				<li class="min-w-18 h-auto">
+					<a class="w-full flex flex-col justify-center items-center p-2 pointer-events-none opacity-50"
 						th:href="@{/utente/create}">
 						<img src="/images/icons/add-user.svg" class="w-8 h-8">
-						<div class="font-bold text-[10px] text-[#666666]">REGISTRATI</div>
+						<div class="font-bold text-[10px] text-[#666666]">SIGN IN</div>
 					</a>
 				</li>
 			</ul>
 		</div>
 	</nav>
-	<section class="flex justify-center items-center p-5 overflow-y-auto">
-			<div class="w-full md:w-3/5 h-auto p-4 border border-gray-300 rounded-xl bg-white  shadow-lg shadow-blue-500/50">
-				<div class="flex justify-between items-center pb-4 border-b-2 border-[#59DDFD] mb-4">
-					<h1 class="font-bold text-2xl">REGISTRAZIONE NUOVO UTENTE</h1>
-					<button class="p-2 bg-[#FF76E9] border border-gray-300 rounded-xl text-white 
-								shadow-md shadow-blue-500/50 font-bold roundend-lg hover:scale-[1.1] transition-discrete">
-						<a 	th:href="@{/SpringBlog/preview}">
-							<img src="/images/icons/close.svg" class="h-6 w-6">
+	<!-- inizio MAIN SECTION  della pagina-->
+	<section class="">
+		<div id="main-section" class="flex flex-col-reverse justify-center items-center overflow-y-auto md:py-14 pb-40 max-xs:pb-[500px] max-xs:pt-[30px]">
+			<div id="bottom-bar"
+				class="fixed bottom-0 md:hidden flex px-4 py-2 w-full h-[64px] bg-white  text-sm border-t border-gray-300">
+				<ul class="flex justify-around items-center w-full">
+					<li class=" text-[#666666] hover:text-[#59DDFD]">
+						<a class="flex flex-col justify-center items-center p-2  transition-discrete"
+							th:href="@{/login}">
+							<svg class="w-6 h-6 fill-current " viewBox="0 0 200 200" version="1.1"
+								xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+								xml:space="preserve" xmlns:serif="http://www.serif.com/"
+								style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
+								<rect id="Tavola-da-disegno1" serif:id="Tavola da disegno1" x="0" y="0" width="200"
+									height="200" style="fill:none;" />
+								<clipPath id="_clip1">
+									<rect id="Tavola-da-disegno11" serif:id="Tavola da disegno1" x="0" y="0" width="200"
+										height="200" />
+								</clipPath>
+								<g clip-path="url(#_clip1)">
+									<g id="login" transform="matrix(11.1111,0,0,11.1111,-11.1111,-11.1111)">
+										<path
+											d="M14,10L8,5L8,8L1,8L1,12L8,12L8,15L14,10ZM17,17L9,17L9,19L17,19C18.1,19 19,18.1 19,17L19,3C19,1.9 18.1,1 17,1L9,1L9,3L17,3L17,17Z" />
+									</g>
+								</g>
+							</svg>
+							<div class="font-bold text-[8px]">LOGIN</div>
 						</a>
-					</button>			
+					</li>
+					<li class=" text-[#666666] hover:text-[#59DDFD]">
+						<a class="flex flex-col justify-center items-center p-2  transition-discrete"
+							th:href="@{/SpringBlog/preview}">
+							<svg class="w-6 h-6 fill-current" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+								viewBox="0,0,256,256" width="50px" height="50px" fill-rule="nonzero">
+								<g fill-rule="nonzero" stroke="none" stroke-width="1"
+									stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10"
+									stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none"
+									font-size="none" text-anchor="none" style="mix-blend-mode: normal">
+									<g transform="scale(5.12,5.12)">
+										<path
+											d="M25,1.05078c-0.2175,0 -0.43414,0.06898 -0.61914,0.20898l-23,17.95117c-0.43,0.34 -0.50992,0.9682 -0.16992,1.4082c0.34,0.43 0.9682,0.50992 1.4082,0.16992l1.38086,-1.07812v26.28906c0,0.55 0.45,1 1,1h14v-18h12v18h14c0.55,0 1,-0.45 1,-1v-26.28906l1.38086,1.07812c0.19,0.14 0.39914,0.21094 0.61914,0.21094c0.3,0 0.58906,-0.13086 0.78906,-0.38086c0.34,-0.44 0.26008,-1.0682 -0.16992,-1.4082l-23,-17.95117c-0.185,-0.14 -0.40164,-0.20898 -0.61914,-0.20898zM35,5v1.05078l6,4.67969v-5.73047z">
+										</path>
+									</g>
+								</g>
+							</svg>
+							<div class="font-bold text-[8px]">PREVIEW</div>
+						</a>
+					</li>
+					<li class="">
+						<a class="flex flex-col justify-center items-center p-2 pointer-events-none opacity-50"
+							th:href="@{/utente/create}">
+							<img src="/images/icons/add-user.svg" class="w-6 h-6">
+							<div class="font-bold text-[8px] text-[#666666]">REGISTRATI</div>
+						</a>
+					</li>
+				</ul>
+			</div>
+			<div class="w-[95%] md:w-3/5 h-auto p-4 border border-gray-300 rounded-xl bg-white  shadow-lg shadow-blue-500/50">
+				<div class="grid grid-cols-12 pb-4 border-b-2 border-[#59DDFD] mb-4">
+					<div class="col-span-11 flex justify-center items-center inline">
+						<h1 class="font-bold text-xl">NUOVO UTENTE</h1>
+					</div>
+					<div class="col-span-1 text-center">
+						<button class="p-[2px] md:p-2 bg-[#FF76E9] border border-gray-300 rounded-xl text-white 
+								shadow-md shadow-blue-500/50 font-bold roundend-lg hover:scale-[1.1] transition-discrete">
+							<a th:href="@{/SpringBlog/preview}">
+								<img src="/images/icons/close.svg" class="h-6 w-6">
+							</a>
+						</button>
+					</div>
 				</div>
 				<div class="p-3">
-					<form id="user-form"
-							th:object="${utente}" 
-							th:action="@{/utente/create}"
-							method="post"
-							enctype="multipart/form-data">
+					<form id="user-form" th:object="${utente}" th:action="@{/utente/create}" method="post"
+						enctype="multipart/form-data">
+						<div class="grid grid-cols-6 mb-3">
+							<label for="userInputSurname" class="col-span-2 ps-3 max-xs:col-span-6 max-xs:mb-3">Cognome* </label>
+							<div class="col-span-4 mb-3 max-xs:col-span-6">
+								<input type="text" class="border-red-600 w-full h-8 ps-4 rounded-lg bg-sky-100 " id="userInputSurname"
+									th:field="*{cognome}" th:errorClass="border">
+								<div id="errorMessageInputSurname" class="text-red-600 text-[12px] text-center w-full"></div>
+								<div th:if="${#fields.hasErrors('cognome')}" class="invalid-feedback">
+									<ul>
+										<li th:each="err : ${#fields.errors('cognome')}" th:text="${err}">
+										</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+						<div class="grid grid-cols-6 mb-3">
+							<label for="userInputName" class="col-span-2 max-xs:col-span-6 ps-3 max-xs:mb-3">Nome*</label>
+							<div class="col-span-4 max-xs:col-span-6 mb-3">
+								<input type="text" class="border-red-600 w-full h-8 ps-4 rounded-lg bg-sky-100 " id="userInputName"
+									th:field="*{nome}" th:errorClass="is-invalid">
+								<div id="errorMessageInputName" class="text-red-600 text-[12px] text-center w-full"></div>
+								<div th:if="${#fields.hasErrors('nome')}" class="invalid-feedback">
+									<ul>
+										<li th:each="err : ${#fields.errors('nome')}" th:text="${err}">
+										</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+						<div class="grid grid-cols-6 mb-3">
+							<label for="userInputMail" class="col-span-2 ps-3 max-xs:col-span-6 max-xs:mb-3">Email*</label>
+							<div class="col-span-4 mb-3 max-xs:col-span-6">
+								<input type="email" class="border-red-600 w-full h-8 ps-4 rounded-lg bg-sky-100 " id="userInputMail"
+									th:field="*{email}" th:errorClass="border">
+								<div id="errorMessageInputEmail" class="text-red-600 text-[12px] text-center w-full"></div>
+								<div th:if="${#fields.hasErrors('email')}" class="invalid-feedback">
+									<ul>
+										<li th:each="err : ${#fields.errors('email')}" th:text="${err}">
+										</li>
+									</ul>
+								</div>
+
+							</div>
+						</div>
+
+						<div class="grid grid-cols-6 mb-3">
+							<label for="userInputPassword" class="col-span-2 ps-3 max-xs:col-span-6 max-xs:mb-3">Password*</label>
+							<div class="col-span-4 max-xs:col-span-6 mb-3">
+								<input type="password" class="border-red-600 w-full h-8 ps-4 rounded-lg bg-sky-100 "
+									id="userInputPassword" th:field="*{password}" th:errorClass="is-invalid">
+								<div id="errorMessageInputPassword" class="text-red-600 text-[12px] text-center w-full"></div>
+								<div class="text-gray-400 text-[12px] text-center w-full">La password deve contenere almeno 12 caratteri di cui un numero, una lettara ed un carattere speciale come <br> @ # $ % ^ & * ( ) _ - + = { } | : ; , . ? / ~ "<br> Non sono ammessi spazi vuoti </div>
+								<div th:if="${#fields.hasErrors('password')}" class="invalid-feedback">
+									<ul>
+										<li th:each="err : ${#fields.errors('password')}" th:text="${err}">
+										</li>
+									</ul>
+								</div>
+							</div>
+
+						</div>
+						<div class="w-full">
 							<div class="grid grid-cols-6 mb-3">
-								<label for="userInputSurname" class="col-span-2 ps-3">Cognome* </label>
-								<div class="col-span-4 mb-3">
-									<input type="text" class="w-full h-8 ps-4 rounded-lg bg-sky-100 " 
-										id="userInputSurname" 
-										th:field="*{cognome}" th:errorClass="is-invalid">
-									
-										<div th:if="${#fields.hasErrors('cognome')}" class="invalid-feedback">
-											<ul>
-												<li th:each="err : ${#fields.errors('cognome')}" 
-													th:text="${err}">
-												</li>
-											</ul>
-										</div>
-									
+								<div class="col-span-2 max-xs:hidden"></div>
+								<div class="col-span-4 max-xs:col-span-6 flex justify-center  ">
+									<img class="w-[100px] h-[100px] border border-gray-300 rounded-lg p-2"
+										src="/images/DefaultClientImage/logo-default.jpg">
 								</div>
 							</div>
 							<div class="grid grid-cols-6 mb-3">
-								<label for="userInputName" class="col-span-2 ps-3">Nome*</label>
-								<div class="col-span-4 mb-3">
-									<input type="text" class="w-full h-8 ps-4 rounded-lg bg-sky-100 " 
-										id="userInputName" 
-										th:field="*{nome}" th:errorClass="is-invalid">
-										
-										<div th:if="${#fields.hasErrors('nome')}" class="invalid-feedback">
-											<ul>
-												<li th:each="err : ${#fields.errors('nome')}" 
-													th:text="${err}">
-												</li>
-											</ul>
-										</div>
-										
-								</div>
+								<label for="userInputUrl" class="col-span-2 ps-3 max-xs:col-span-6 max-xs:mb-3">Immagine profilo</label>
+								<input id="userInputProgileImgUrl" type="file" class="col-span-4 max-xs:col-span-6 h-8 rounded-lg bg-sky-100"
+									name="file">
 							</div>
-							<div class="grid grid-cols-6 mb-3">
-								<label for="userInputMail" class="col-span-2 ps-3">Email*</label>
-								<div class="col-span-4 mb-3">
-									<input type="email" class="w-full h-8 ps-4 rounded-lg bg-sky-100 " 
-										id="userInputMail" 
-										th:field="*{email}" th:errorClass="is-invalid">
-										
-										<div th:if="${#fields.hasErrors('email')}" class="invalid-feedback">
-											<ul>
-												<li th:each="err : ${#fields.errors('email')}" 
-													th:text="${err}">
-												</li>
-											</ul>
-										</div>
-										
-								</div>
-							</div>
-							
-								<div class="grid grid-cols-6 mb-3">
-									<label for="userInputPassword" class="col-span-2 ps-3">Password*</label>
-									<div class="col-span-4">
-										<input type="password" class="w-full h-8 ps-4 rounded-lg bg-sky-100 " 
-											id="userInputPassword" 
-											th:field="*{password}" th:errorClass="is-invalid">
-											
-											<div th:if="${#fields.hasErrors('password')}" class="invalid-feedback">
-												<ul>
-													<li th:each="err : ${#fields.errors('password')}" 
-														th:text="${err}">
-													</li>
-												</ul>
-											</div>
-									</div>
-								
-								</div>
-								<div class="w-full">
-									<div class="grid grid-cols-6 mb-3">
-										<div class="col-span-2"></div>
-										<div class="col-span-4 flex justify-center  ">
-											<img class="w-[100px] h-[100px] border border-gray-300 rounded-lg p-2" src="/images/DefaultClientImage/logo-default.jpg">										
-										</div>
-									</div>
-									<div class="grid grid-cols-6 mb-3">
-										<label for="userInputUrl" class="col-span-2 ps-3">Immagine profilo</label>
-										<input id="userInputUrl" type="file" class="col-span-4 h-8 rounded-lg bg-sky-100" name="file">																				
-									</div>
-								</div>
-					
-							<div class="text-end pe-12 py-6">
-								<button type="submit" class="px-4 py-2 bg-[#FF76E9] border border-gray-300 rounded-xl text-white 
-										shadow-md shadow-blue-500/50 font-bold roundend-lg hover:scale-[1.1] transition-discrete">Salva</button>
-							</div>
+						</div>
+
+						<div class="text-center  py-6">
+							<button type="submit" class="px-4 py-2 bg-[#FF76E9] border border-gray-300 rounded-xl text-white 
+										shadow-md shadow-blue-500/50 font-bold roundend-lg hover:scale-[1.1] transition-discrete">SALVA</button>
+						</div>
 					</form>
-					
+
 				</div>
 			</div>
+		</div>
 	</section>
+	<!-- / MAIN SECTION  della pagina-->
+	<script type="text/javascript" th:src="@{/js/create-utente.js}"></script>
 </body>
+
 </html>
