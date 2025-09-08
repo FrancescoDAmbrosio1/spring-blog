@@ -11,7 +11,7 @@ const errorMessageInputName = document.getElementById('errorMessageInputName');
 const errorMessageInputEmail = document.getElementById('errorMessageInputEmail');
 const errorMessageInputPassword = document.getElementById('errorMessageInputPassword');
 
-let emailAlreadyExist = true;
+let emailAlreadyExist = false;
 
 
 //intercettazione form per validazione
@@ -94,19 +94,25 @@ function userFormValidation(e){
 
 //funzione che verifica se la mail è gia presente a db
 function verifyIfEmailAlreadyExist(mail){
-	const api_verifyMailUrl = 'http://localhost:8080/Springblog/api/verify-email-'+mail; 
 	
-	fetch(api_verifyMailUrl).then(result =>{
-		if(!result.ok){
-			emailAlreadyExist = true;
-			return "Email non valida...riprovare";
+	const api_verifyMailUrl = 'http://localhost:8080/api/verify-email/'+mail; 
+	console.log("url api: " + api_verifyMailUrl)
+	
+	
+	fetch(api_verifyMailUrl).then(response =>{
+		if (!response.ok) {
+						throw new Error('Network response was not ok');
+					}
+					return response;
+				})
+				.then(data =>{
+					if(data == "presente"){
+						verifyIfEmailAlreadyExist = true;
+						console.log("verifyIfEmailAlreadyExist: " + verifyIfEmailAlreadyExist)
+						return "Email già registrata"
+					} 
+				});
 			
-		}
-		if(result == true){
-			emailAlreadyExist = true;
-			return "Email già registrata";
-		}
-	});
 }
 
 //funzione che verifica la conformità della password
@@ -118,17 +124,16 @@ function isConformityOfPasswordOk(password){
 	let pswContainsSpecialChars = false;
 		
 		const specialChars = ["@", "#", "$", "%", "^", "&", "*", "(", ")", "_", "-", "+", "=", "{", "}", "|", ":", ";", ".", "?", "/", "~"];
-		const letters = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z",
-			"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "Z", "X", "Y", "Z"];
+		const letters = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
 		const numbers = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
 		
 	console.log("password inserita: " + password);
 	//se la password è >= 12 caratteri vado a verificare tutti gli altri requisiti
 	if(password.length >= 12){
-		console.log("la password è >= di 12 caratteri")
+		//console.log("la password è >= di 12 caratteri")
 		
 		const passwordSplit = password.split("");
-		console.log("password splittata: " + passwordSplit)
+		//console.log("password splittata: " + passwordSplit)
 		passwordSplit.forEach(item =>{
 			if(item == " "){
 				//console.log("la password contiene spazi");
@@ -150,7 +155,7 @@ function isConformityOfPasswordOk(password){
 				});
 				
 				letters.forEach(letter =>{
-					if(item === letter){
+					if(item === letter || item == letter.toUpperCase()){
 						pswContainsLetters = true;
 						//console.log("la psw, al carattere " + item + " contiene il la lettera: " + letter);
 					}

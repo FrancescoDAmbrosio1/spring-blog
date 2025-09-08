@@ -35,9 +35,9 @@
 	<title>SpringBlog - Registrazione </title>
 </head>
 
-<body class="background-custom h-dvh w-dvw">
+<body class="background-custom h-screen w-full flex flex-col m-0">
 	<nav id="navbar"
-		class="flex justify-between items-center px-4 py-2 w-full max-md:h-[64px] h-[84px] bg-white  text-sm border-b border-gray-300">
+		class="fixed flex justify-between items-center px-4 py-2 w-full max-md:h-[64px] h-[84px] bg-white  text-sm border-b border-gray-300">
 		<div id="icona" class="col-auto flex items-center">
 			<a class="me-5" th:href="@{/SpringBlog/preview}">
 				<img src="/images/iconaLogin.PNG" alt="Logo" class="inline w-10 h-10">
@@ -89,15 +89,15 @@
 					<a class="w-full flex flex-col justify-center items-center p-2 pointer-events-none opacity-50"
 						th:href="@{/utente/create}">
 						<img src="/images/icons/add-user.svg" class="w-8 h-8">
-						<div class="font-bold text-[10px] text-[#666666]">SIGN IN</div>
+						<div class="font-bold text-[10px] text-[#666666]">SIGN UP</div>
 					</a>
 				</li>
 			</ul>
 		</div>
 	</nav>
 	<!-- inizio MAIN SECTION  della pagina-->
-	<section class="">
-		<div id="main-section" class="flex flex-col-reverse justify-center items-center overflow-y-auto md:py-14 pb-40 max-xs:pb-[500px] max-xs:pt-[30px]">
+	<section class="h-auto w-dvw">
+		<div id="main-section" class="flex flex-col justify-center items-center h-dvh w-dvw overflow-y-auto">
 			<div id="bottom-bar"
 				class="fixed bottom-0 md:hidden flex px-4 py-2 w-full h-[64px] bg-white  text-sm border-t border-gray-300">
 				<ul class="flex justify-around items-center w-full">
@@ -152,105 +152,107 @@
 					</li>
 				</ul>
 			</div>
-			<div class="w-[95%] md:w-3/5 h-auto p-4 border border-gray-300 rounded-xl bg-white  shadow-lg shadow-blue-500/50">
-				<div class="grid grid-cols-12 pb-4 border-b-2 border-[#59DDFD] mb-4">
-					<div class="col-span-11 flex justify-center items-center inline">
-						<h1 class="font-bold text-xl">NUOVO UTENTE</h1>
-					</div>
-					<div class="col-span-1 text-center">
-						<button class="p-[2px] md:p-2 bg-[#FF76E9] border border-gray-300 rounded-xl text-white 
-								shadow-md shadow-blue-500/50 font-bold roundend-lg hover:scale-[1.1] transition-discrete">
-							<a th:href="@{/SpringBlog/preview}">
-								<img src="/images/icons/close.svg" class="h-6 w-6">
-							</a>
-						</button>
-					</div>
-				</div>
-				<div class="p-3">
-					<form id="user-form" th:object="${utente}" th:action="@{/utente/create}" method="post"
-						enctype="multipart/form-data">
-						<div class="grid grid-cols-6 mb-3">
-							<label for="userInputSurname" class="col-span-2 ps-3 max-xs:col-span-6 max-xs:mb-3">Cognome* </label>
-							<div class="col-span-4 mb-3 max-xs:col-span-6">
-								<input type="text" class="border-red-600 w-full h-8 ps-4 rounded-lg bg-sky-100 " id="userInputSurname"
-									th:field="*{cognome}" th:errorClass="border">
-								<div id="errorMessageInputSurname" class="text-red-600 text-[12px] text-center w-full"></div>
-								<div th:if="${#fields.hasErrors('cognome')}" class="invalid-feedback">
-									<ul>
-										<li th:each="err : ${#fields.errors('cognome')}" th:text="${err}">
-										</li>
-									</ul>
+			<div class="flex justify-center items-center h-full py-4 overflow-y-auto mt-[100px]">
+				<div class="w-[95%] md:w-3/5 lg:max-w-[850px] h-auto p-4 mt-8 border border-gray-300 rounded-xl bg-white  shadow-lg shadow-blue-500/50">
+								<div class="grid grid-cols-12 pb-4 border-b-2 border-[#59DDFD] mx-2">
+									<div class="col-span-11 flex justify-center items-center inline">
+										<h1 class="font-bold text-xl">NUOVO UTENTE</h1>
+									</div>
+									<div class="col-span-1 text-center">
+										<button class="p-[2px] md:p-2 bg-[#FF76E9] border border-gray-300 rounded-xl text-white 
+												shadow-md shadow-blue-500/50 font-bold roundend-lg hover:scale-[1.1] transition-discrete">
+											<a th:href="@{/SpringBlog/preview}">
+												<img src="/images/icons/close.svg" class="h-6 w-6">
+											</a>
+										</button>
+									</div>
+								</div>
+								<div class="p-3">
+									<form id="user-form" th:object="${utente}" th:action="@{/utente/create}" method="post"
+										enctype="multipart/form-data">
+										<div class="grid grid-cols-6 mb-3">
+											<label for="userInputSurname" class="col-span-2 ps-3 max-xs:col-span-6 max-xs:mb-3">Cognome* </label>
+											<div class="col-span-4 mb-3 max-xs:col-span-6">
+												<input type="text" class="border-red-600 w-full h-8 ps-4 rounded-lg bg-sky-100 " id="userInputSurname"
+													th:field="*{cognome}" th:errorClass="border">
+												<div id="errorMessageInputSurname" class="text-red-600 text-[12px] text-center w-full"></div>
+												<div th:if="${#fields.hasErrors('cognome')}" class="invalid-feedback">
+													<ul>
+														<li th:each="err : ${#fields.errors('cognome')}" th:text="${err}">
+														</li>
+													</ul>
+												</div>
+											</div>
+										</div>
+										<div class="grid grid-cols-6 mb-3">
+											<label for="userInputName" class="col-span-2 max-xs:col-span-6 ps-3 max-xs:mb-3">Nome*</label>
+											<div class="col-span-4 max-xs:col-span-6 mb-3">
+												<input type="text" class="border-red-600 w-full h-8 ps-4 rounded-lg bg-sky-100 " id="userInputName"
+													th:field="*{nome}" th:errorClass="is-invalid">
+												<div id="errorMessageInputName" class="text-red-600 text-[12px] text-center w-full"></div>
+												<div th:if="${#fields.hasErrors('nome')}" class="invalid-feedback">
+													<ul>
+														<li th:each="err : ${#fields.errors('nome')}" th:text="${err}">
+														</li>
+													</ul>
+												</div>
+											</div>
+										</div>
+										<div class="grid grid-cols-6 mb-3">
+											<label for="userInputMail" class="col-span-2 ps-3 max-xs:col-span-6 max-xs:mb-3">Email*</label>
+											<div class="col-span-4 mb-3 max-xs:col-span-6">
+												<input type="email" class="border-red-600 w-full h-8 ps-4 rounded-lg bg-sky-100 " id="userInputMail"
+													th:field="*{email}" th:errorClass="border">
+												<div id="errorMessageInputEmail" class="text-red-600 text-[12px] text-center w-full"></div>
+												<div th:if="${#fields.hasErrors('email')}" class="invalid-feedback">
+													<ul>
+														<li th:each="err : ${#fields.errors('email')}" th:text="${err}">
+														</li>
+													</ul>
+												</div>
+
+											</div>
+										</div>
+
+										<div class="grid grid-cols-6 mb-3">
+											<label for="userInputPassword" class="col-span-2 ps-3 max-xs:col-span-6 max-xs:mb-3">Password*</label>
+											<div class="col-span-4 max-xs:col-span-6 mb-3">
+												<input type="password" class="border-red-600 w-full h-8 ps-4 rounded-lg bg-sky-100 "
+													id="userInputPassword" th:field="*{password}" th:errorClass="is-invalid">
+												<div id="errorMessageInputPassword" class="text-red-600 text-[12px] text-center w-full"></div>
+												<div class="text-gray-400 text-[9px] md:text-[12px] text-center w-full">La password deve contenere almeno 12 caratteri di cui un numero, una lettara e un carattere speciale tra <br> @ # $ % ^ & * ( ) _ - + = { } | : ; , . ? / ~ "<br> Non sono ammessi spazi vuoti </div>
+												<div th:if="${#fields.hasErrors('password')}" class="invalid-feedback">
+													<ul>
+														<li th:each="err : ${#fields.errors('password')}" th:text="${err}">
+														</li>
+													</ul>
+												</div>
+											</div>
+
+										</div>
+										<div class="w-full">
+											<div class="grid grid-cols-6 mb-3">
+												<div class="col-span-2 max-xs:hidden"></div>
+												<div class="col-span-4 max-xs:col-span-6 flex justify-center  ">
+													<img class="w-[100px] h-[100px] border border-gray-300 rounded-lg p-2"
+														src="/images/DefaultClientImage/logo-default.jpg">
+												</div>
+											</div>
+											<div class="grid grid-cols-6 mb-3">
+												<label for="userInputUrl" class="col-span-2 ps-3 max-xs:col-span-6 max-xs:mb-3">Immagine profilo</label>
+												<input id="userInputProgileImgUrl" type="file" class="col-span-4 max-xs:col-span-6 h-8 rounded-lg bg-sky-100"
+													name="file">
+											</div>
+										</div>
+
+										<div class="text-center  py-6">
+											<button type="submit" class="px-4 py-2 bg-[#FF76E9] border border-gray-300 rounded-xl text-white 
+														shadow-md shadow-blue-500/50 font-bold roundend-lg hover:scale-[1.1] transition-discrete">SALVA</button>
+										</div>
+									</form>
+
 								</div>
 							</div>
-						</div>
-						<div class="grid grid-cols-6 mb-3">
-							<label for="userInputName" class="col-span-2 max-xs:col-span-6 ps-3 max-xs:mb-3">Nome*</label>
-							<div class="col-span-4 max-xs:col-span-6 mb-3">
-								<input type="text" class="border-red-600 w-full h-8 ps-4 rounded-lg bg-sky-100 " id="userInputName"
-									th:field="*{nome}" th:errorClass="is-invalid">
-								<div id="errorMessageInputName" class="text-red-600 text-[12px] text-center w-full"></div>
-								<div th:if="${#fields.hasErrors('nome')}" class="invalid-feedback">
-									<ul>
-										<li th:each="err : ${#fields.errors('nome')}" th:text="${err}">
-										</li>
-									</ul>
-								</div>
-							</div>
-						</div>
-						<div class="grid grid-cols-6 mb-3">
-							<label for="userInputMail" class="col-span-2 ps-3 max-xs:col-span-6 max-xs:mb-3">Email*</label>
-							<div class="col-span-4 mb-3 max-xs:col-span-6">
-								<input type="email" class="border-red-600 w-full h-8 ps-4 rounded-lg bg-sky-100 " id="userInputMail"
-									th:field="*{email}" th:errorClass="border">
-								<div id="errorMessageInputEmail" class="text-red-600 text-[12px] text-center w-full"></div>
-								<div th:if="${#fields.hasErrors('email')}" class="invalid-feedback">
-									<ul>
-										<li th:each="err : ${#fields.errors('email')}" th:text="${err}">
-										</li>
-									</ul>
-								</div>
-
-							</div>
-						</div>
-
-						<div class="grid grid-cols-6 mb-3">
-							<label for="userInputPassword" class="col-span-2 ps-3 max-xs:col-span-6 max-xs:mb-3">Password*</label>
-							<div class="col-span-4 max-xs:col-span-6 mb-3">
-								<input type="password" class="border-red-600 w-full h-8 ps-4 rounded-lg bg-sky-100 "
-									id="userInputPassword" th:field="*{password}" th:errorClass="is-invalid">
-								<div id="errorMessageInputPassword" class="text-red-600 text-[12px] text-center w-full"></div>
-								<div class="text-gray-400 text-[12px] text-center w-full">La password deve contenere almeno 12 caratteri di cui un numero, una lettara ed un carattere speciale come <br> @ # $ % ^ & * ( ) _ - + = { } | : ; , . ? / ~ "<br> Non sono ammessi spazi vuoti </div>
-								<div th:if="${#fields.hasErrors('password')}" class="invalid-feedback">
-									<ul>
-										<li th:each="err : ${#fields.errors('password')}" th:text="${err}">
-										</li>
-									</ul>
-								</div>
-							</div>
-
-						</div>
-						<div class="w-full">
-							<div class="grid grid-cols-6 mb-3">
-								<div class="col-span-2 max-xs:hidden"></div>
-								<div class="col-span-4 max-xs:col-span-6 flex justify-center  ">
-									<img class="w-[100px] h-[100px] border border-gray-300 rounded-lg p-2"
-										src="/images/DefaultClientImage/logo-default.jpg">
-								</div>
-							</div>
-							<div class="grid grid-cols-6 mb-3">
-								<label for="userInputUrl" class="col-span-2 ps-3 max-xs:col-span-6 max-xs:mb-3">Immagine profilo</label>
-								<input id="userInputProgileImgUrl" type="file" class="col-span-4 max-xs:col-span-6 h-8 rounded-lg bg-sky-100"
-									name="file">
-							</div>
-						</div>
-
-						<div class="text-center  py-6">
-							<button type="submit" class="px-4 py-2 bg-[#FF76E9] border border-gray-300 rounded-xl text-white 
-										shadow-md shadow-blue-500/50 font-bold roundend-lg hover:scale-[1.1] transition-discrete">SALVA</button>
-						</div>
-					</form>
-
-				</div>
 			</div>
 		</div>
 	</section>

@@ -8,7 +8,7 @@
 al massimo trovare soluzione per metterlo in html */
 
 #main-section{
-	height: calc(100vh - 84px);
+	
 }
 
 /* Backgrounds */
@@ -18,8 +18,10 @@ al massimo trovare soluzione per metterlo in html */
 	background: linear-gradient(45deg, rgba(255,117,233,1) 0%, rgba(255,255,255,1) 50%, rgba(69,217,252,1) 100%);
 	background-repeat: no-repeat;
 	background-attachment: fixed;
-	height: 100vh;
-	width: 100%;
+	background-size: cover;
+	
+	margin: 0;
+	
 	
 	
 }
